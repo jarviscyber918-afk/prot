@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Rounded Navy Container -->
+  <rect width="512" height="512" rx="116" fill="#0F172A"/>
+  <rect x="8" y="8" width="496" height="496" rx="108" fill="none" stroke="#1E293B" stroke-width="12" opacity="0.6"/>
+
+  <!-- Top Left Green Online Status Dot -->
+  <circle cx="132" cy="132" r="32" fill="#10B981"/>
+
+  <!-- Top Right Cyber Slash (Red/Coral Accent) -->
+  <path d="M 336 96 L 396 96 L 352 176 L 292 176 Z" fill="#EF4444"/>
+
+  <!-- Bold Geometric Monogram "J" -->
+  <!-- Stem, curve, and terminal hook -->
+  <path d="M 304 200 
+           L 364 200 
+           L 364 340 
+           C 364 416, 304 444, 232 444 
+           C 160 444, 108 400, 108 344 
+           L 172 344 
+           C 172 368, 192 388, 230 388 
+           C 272 388, 304 368, 304 332 
+           Z" 
+        fill="#FFFFFF"/>
+</svg>

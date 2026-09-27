@@ -1,0 +1,7 @@
+# VIBE.STUDIO — Production Robots Configuration
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+Sitemap: https://vibe-studio-template.demo.app/sitemap.xml

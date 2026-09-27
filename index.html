@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <!-- Hardened CSP: explicit allowlist for trusted CDNs + unsafe-eval required by Three.js -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://unpkg.com https://cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; connect-src 'self' https:; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https:;">
+
+  <!-- SEO & Multilingual -->
+  <title data-i18n="seo_title">VIBE.STUDIO — Creative Web Architect &amp; Vibe Coder Portfolio</title>
+  <meta name="description" content="VIBE.STUDIO builds high-performance web platforms, 3D WebGL experiences, and conversion-focused landing pages." data-meta-i18n="seo_desc">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://vibe-studio-template.demo.app/">
+  <link rel="alternate" hreflang="en" href="https://vibe-studio-template.demo.app/">
+  <link rel="alternate" hreflang="ar" href="https://vibe-studio-template.demo.app/?lang=ar">
+  <link rel="alternate" hreflang="x-default" href="https://vibe-studio-template.demo.app/">
+
+  <!-- Favicon System & App Icons -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=1.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png?v=1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=1.0">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#0F172A">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://vibe-studio-template.demo.app/">
+  <meta property="og:title" content="VIBE.STUDIO — Creative Web Architect Portfolio" data-meta-i18n="og_title">
+  <meta property="og:description" content="High-performance web platforms, 3D WebGL experiences, and conversion design template." data-meta-i18n="og_desc">
+  <meta property="og:image" content="https://vibe-studio-template.demo.app/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="VIBE.STUDIO">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@yourstudio">
+  <meta name="twitter:creator" content="@yourstudio">
+  <meta name="twitter:title" content="VIBE.STUDIO — Creative Web Architect Portfolio">
+  <meta name="twitter:description" content="High-performance web platforms, 3D WebGL experiences, and conversion design template.">
+  <meta name="twitter:image" content="https://vibe-studio-template.demo.app/og-image.jpg">
+
+  <!-- Comprehensive Structured Data (@graph: Person, ProfessionalService, CreativeWork, WebSite) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://vibe-studio-template.demo.app/#person",
+        "name": "VIBE.STUDIO",
+        "url": "https://vibe-studio-template.demo.app",
+        "sameAs": ["https://x.com/yourstudio"],
+        "jobTitle": "Creative Web Architect & Vibe Coder",
+        "description": "Specializing in responsive web platforms, 3D WebGL interactive experiences, and conversion-focused frontend engineering.",
+        "knowsAbout": ["Frontend Development", "Three.js", "GSAP", "WebGL", "Responsive Design", "JavaScript", "Web Security"]
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://vibe-studio-template.demo.app/#service",
+        "name": "VIBE.STUDIO Development Services",
+        "url": "https://vibe-studio-template.demo.app",
+        "priceRange": "$$$",
+        "provider": { "@id": "https://vibe-studio-template.demo.app/#person" },
+        "description": "Custom web architecture, 3D interactive design, and performance-first frontend platforms.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "US"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://vibe-studio-template.demo.app/#website",
+        "url": "https://vibe-studio-template.demo.app",
+        "name": "VIBE.STUDIO Portfolio",
+        "publisher": { "@id": "https://vibe-studio-template.demo.app/#person" },
+        "inLanguage": ["en", "ar"]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Fonts — preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- CDNs: async/defer to unblock render -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" defer></script>
+  <!-- Three.js deferred separately — loaded lazily after hero by app.js -->
+  <link rel="stylesheet" href="style.css?v=15.0">
+</head>
+<body>
+
+  <noscript>
+    <div class="noscript-banner" role="alert" data-i18n="noscript_text">
+      JavaScript is currently disabled. The portfolio is fully readable. For direct project inquiries, email <a href="mailto:hello@yourstudio.com"><bdi dir="ltr">hello@yourstudio.com</bdi></a>.
+    </div>
+  </noscript>
+
+  <!-- Skip to main content — keyboard accessibility -->
+  <a href="#main-content" class="skip-link" data-i18n="skip_link">Skip to main content</a>
+
+  <!-- Aria live region for form status announcements -->
+  <div id="formStatusAnnouncer" aria-live="polite" aria-atomic="true" class="sr-only"></div>
+
+  <!-- Sticky Header & Mobile Controls -->
+  <header class="header" role="banner">
+    <a href="#overview" class="brand" aria-label="VIBE.STUDIO — Home" data-aria-i18n="aria_brand">
+      <span class="brand-dot" aria-hidden="true"></span>
+      <span class="brand-name">VIBE.STUDIO</span>
+      <span class="brand-sub" aria-hidden="true">// VIBE.CODE</span>
+    </a>
+
+    <!-- Desktop Navigation Dock -->
+    <nav class="nav-dock" id="navDock" aria-label="Main navigation" data-aria-i18n="aria_nav_dock">
+      <div class="nav-indicator" id="navIndicator" aria-hidden="true"></div>
+      <a href="#overview" class="nav-item active" data-index="0"><span class="nav-num" aria-hidden="true">01</span> <span data-i18n="nav_overview">Overview</span></a>
+      <a href="#services" class="nav-item" data-index="1"><span class="nav-num" aria-hidden="true">02</span> <span data-i18n="nav_services">Services</span></a>
+      <a href="#platforms" class="nav-item" data-index="2"><span class="nav-num" aria-hidden="true">03</span> <span data-i18n="nav_platforms">Work</span></a>
+      <a href="#connect" class="nav-item" data-index="3"><span class="nav-num" aria-hidden="true">04</span> <span data-i18n="nav_connect">Connect</span></a>
+    </nav>
+
+    <!-- Header Actions & 3-Bar Hamburger -->
+    <div class="header-actions">
+      <div class="lang-switch" id="langSwitch" role="group" aria-label="Language selector" data-aria-i18n="aria_lang_switch">
+        <button type="button" class="lang-btn active" data-lang="en" aria-pressed="true" aria-label="Switch to English" data-aria-i18n="aria_lang_en">EN</button>
+        <span class="lang-divider" aria-hidden="true">/</span>
+        <button type="button" class="lang-btn" data-lang="ar" aria-pressed="false" aria-label="Switch to Arabic" data-aria-i18n="aria_lang_ar">AR</button>
+      </div>
+      <a href="#connect" class="btn btn-outline desktop-only" data-i18n="btn_start_project">Start a Project</a>
+      
+      <!-- 3-Bar Hamburger Trigger -->
+      <button type="button" class="hamburger-btn" id="hamburgerBtn" aria-label="Open navigation menu" data-aria-i18n="aria_hamburger" aria-expanded="false" aria-controls="mobileDrawer">
+        <span class="bar bar-1" aria-hidden="true"></span>
+        <span class="bar bar-2" aria-hidden="true"></span>
+        <span class="bar bar-3" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Slide-out Drawer Navigation -->
+  <div class="drawer-backdrop" id="drawerBackdrop" aria-hidden="true"></div>
+  <aside class="mobile-drawer" id="mobileDrawer" aria-hidden="true" aria-label="Mobile navigation menu" data-aria-i18n="aria_drawer" role="dialog">
+    <div class="drawer-header">
+      <span class="brand-sub" aria-hidden="true" data-i18n="drawer_heading">// NAVIGATION</span>
+      <button type="button" class="drawer-close" id="drawerClose" aria-label="Close navigation menu" data-aria-i18n="aria_close_drawer">&times;</button>
+    </div>
+    <nav class="drawer-links" aria-label="Mobile navigation" data-aria-i18n="aria_nav_dock">
+      <a href="#overview" class="drawer-link active"><span class="nav-num" aria-hidden="true">01</span> <span data-i18n="nav_overview">Overview</span></a>
+      <a href="#services" class="drawer-link"><span class="nav-num" aria-hidden="true">02</span> <span data-i18n="nav_services">Services</span></a>
+      <a href="#platforms" class="drawer-link"><span class="nav-num" aria-hidden="true">03</span> <span data-i18n="nav_platforms">Work</span></a>
+      <a href="#connect" class="drawer-link"><span class="nav-num" aria-hidden="true">04</span> <span data-i18n="nav_connect">Connect</span></a>
+    </nav>
+    <div class="drawer-footer">
+      <a href="#connect" class="btn btn-primary" style="width: 100%;" data-i18n="btn_start_project">Start a Project</a>
+    </div>
+  </aside>
+
+  <main id="main-content">
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="overview" aria-labelledby="heroTitle">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge" role="note">
+            <span class="badge-dot" aria-hidden="true"></span>
+            <span data-i18n="hero_badge">VIBE.STUDIO // VIBE CODER &amp; PLATFORM ARCHITECT</span>
+          </div>
+          
+          <h1 class="hero-title" id="heroTitle">
+            <span class="line-mask"><span class="line-inner line-1">Architecting Responsive</span></span>
+            <span class="line-mask"><span class="line-inner line-2">Web Platforms &amp;</span></span>
+            <span class="line-mask"><span class="line-inner line-3"><span class="gradient-text line-3-plain">Rapid Prototypes</span><span class="line-3-suffix">.</span></span></span>
+          </h1>
+
+          <p class="hero-subtitle" data-i18n="hero_subtitle">I build high-performance web platforms, 3D WebGL experiences, and conversion-focused interfaces — for brands and startups that demand the best.</p>
+          
+          <div class="hero-actions">
+            <a href="#connect" class="btn btn-primary" data-i18n="btn_start_project">Start a Project</a>
+            <a href="#platforms" class="btn btn-secondary" data-i18n="btn_view_work">View Case Studies</a>
+          </div>
+
+          <!-- Availability indicator -->
+          <div class="hero-avail">
+            <span class="avail-dot" aria-hidden="true"></span>
+            <span data-i18n="hero_avail">Available for new projects · 2026</span>
+          </div>
+        </div>
+
+        <div class="hero-window" aria-label="Interactive 3D cloud WebGL demonstration" data-aria-i18n="aria_hero_window" role="img">
+          <div class="window-header" aria-hidden="true">
+            <div class="window-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-amber"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <span class="window-title" data-i18n="webgl_title"><bdi dir="ltr">ATMOSPHERIC_CLOUD_ENGINE.GL</bdi></span>
+          </div>
+          <div class="window-canvas-container" id="cloudCanvasContainer">
+            <!-- WebGL Fallback (shown if Three.js fails or unsupported) -->
+            <div class="webgl-fallback" id="webglFallback" aria-hidden="true">
+              <div class="fallback-orb"></div>
+              <p class="fallback-label" data-i18n="webgl_fallback">3D WebGL Engine</p>
+            </div>
+          </div>
+          <div class="window-footer" aria-hidden="true">
+            <span class="status-indicator" id="fpsCounter" data-i18n="webgl_status"><bdi dir="ltr">THREE.JS // WEBGL 2.0 ENGINE</bdi></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section" id="services" aria-labelledby="servicesTitle">
+      <div class="section-header">
+        <div class="section-eyebrow" data-i18n="services_eyebrow">// 02. WHAT I BUILD</div>
+        <h2 class="section-title" id="servicesTitle" data-i18n="services_title">Services &amp; Capabilities</h2>
+        <p class="section-subtitle" data-i18n="services_subtitle">From landing pages to full 3D experiences — every build is engineered for speed, conversion, and craft.</p>
+      </div>
+
+      <div class="services-grid">
+        <article class="service-card">
+          <div class="service-icon" aria-hidden="true">⬡</div>
+          <h3 class="service-name" data-i18n="svc_frontend">Creative Frontend Experiences</h3>
+          <p class="service-desc" data-i18n="svc_frontend_desc">Pixel-perfect, buttery-smooth interfaces built with vanilla JS, CSS architecture, and premium micro-interactions.</p>
+        </article>
+        <article class="service-card">
+          <div class="service-icon" aria-hidden="true">◈</div>
+          <h3 class="service-name" data-i18n="svc_3d">3D &amp; WebGL Experiences</h3>
+          <p class="service-desc" data-i18n="svc_3d_desc">Procedural 3D scenes, interactive WebGL experiences, and real-time rendering with Three.js — optimized for 60 FPS.</p>
+        </article>
+        <article class="service-card">
+          <div class="service-icon" aria-hidden="true">⬕</div>
+          <h3 class="service-name" data-i18n="svc_landing">Landing Pages &amp; Conversion Design</h3>
+          <p class="service-desc" data-i18n="svc_landing_desc">High-converting landing pages and portfolio platforms engineered for speed, trust, and measurable results.</p>
+        </article>
+        <article class="service-card">
+          <div class="service-icon" aria-hidden="true">⬙</div>
+          <h3 class="service-name" data-i18n="svc_automation">Automation &amp; Integrations</h3>
+          <p class="service-desc" data-i18n="svc_automation_desc">Webhook pipelines, Google Apps Script automations, and serverless integrations that cut manual work entirely.</p>
+        </article>
+      </div>
+
+      <!-- Process Strip -->
+      <div class="process-strip" aria-label="How I work" data-aria-i18n="aria_process_strip">
+        <div class="process-step">
+          <span class="process-num" aria-hidden="true">01</span>
+          <span class="process-label" data-i18n="process_discover">Discover</span>
+        </div>
+        <div class="process-arrow" aria-hidden="true">→</div>
+        <div class="process-step">
+          <span class="process-num" aria-hidden="true">02</span>
+          <span class="process-label" data-i18n="process_design">Design</span>
+        </div>
+        <div class="process-arrow" aria-hidden="true">→</div>
+        <div class="process-step">
+          <span class="process-num" aria-hidden="true">03</span>
+          <span class="process-label" data-i18n="process_build">Build</span>
+        </div>
+        <div class="process-arrow" aria-hidden="true">→</div>
+        <div class="process-step">
+          <span class="process-num" aria-hidden="true">04</span>
+          <span class="process-label" data-i18n="process_launch">Launch</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Platforms Showcase -->
+    <section class="section" id="platforms" aria-labelledby="platformsTitle">
+      <div class="section-header">
+        <div class="section-eyebrow" data-i18n="platforms_eyebrow">// 03. SIGNATURE WORK</div>
+        <h2 class="section-title" id="platformsTitle" data-i18n="platforms_title">Featured Web Platforms</h2>
+        <p class="section-subtitle" data-i18n="platforms_subtitle">Production-grade web architecture, responsive client platforms, and WebGL experiences.</p>
+      </div>
+
+      <!-- Swipeable Filter Pills Container -->
+      <div class="filter-pills-container" id="projectFilters" role="group" aria-label="Filter projects by type" data-aria-i18n="aria_project_filters">
+        <button type="button" class="filter-btn active" data-filter="all" data-i18n="filter_all" aria-pressed="true">All Platforms</button>
+        <button type="button" class="filter-btn" data-filter="responsive" data-i18n="filter_responsive" aria-pressed="false">Responsive Architectures</button>
+        <button type="button" class="filter-btn" data-filter="commerce" data-i18n="filter_commerce" aria-pressed="false">Web Commerce</button>
+        <button type="button" class="filter-btn" data-filter="3d" data-i18n="filter_3d" aria-pressed="false">3D &amp; WebGL</button>
+      </div>
+
+      <!-- 3 Projects Grid -->
+      <div class="cards-grid" id="projectGrid">
+        
+        <!-- Cabin Vita -->
+        <article class="project-card" data-category="responsive">
+          <div>
+            <div class="card-meta">
+              <span class="card-badge" data-i18n="badge_clinic">CLINICAL WEB PLATFORM</span>
+              <span class="status-live" data-i18n="status_live">● LIVE</span>
+            </div>
+            <h3 class="card-title"><bdi dir="ltr">Cabin Vita</bdi></h3>
+            <p class="card-desc" data-i18n="desc_cabin">Modern dental clinic web platform featuring seamless interactive calendar appointment booking and client dashboard architecture.</p>
+            <div class="card-highlights">
+              <span class="highlight-tag" data-i18n="hl_mobile">Mobile Responsive</span>
+              <span class="highlight-tag" data-i18n="hl_sync">Real-time Slot Sync</span>
+            </div>
+            <div class="tech-tags">
+              <span data-i18n="tag_responsive">Full-Responsive Web</span>
+              <span data-i18n="tag_scheduling">Dynamic Scheduling</span>
+              <span data-i18n="tag_ux_arch">UX Architecture</span>
+              <span data-i18n="tag_vanilla_js">Vanilla JS</span>
+            </div>
+          </div>
+          <div class="card-actions">
+            <button type="button" class="btn btn-secondary btn-case-study" data-project="cabin" data-i18n="btn_case_study" aria-haspopup="dialog">View Case Study</button>
+            <a href="https://cabin-vita.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-card" data-i18n="btn_launch">Launch Live ↗</a>
+          </div>
+        </article>
+
+        <!-- Boutique E-Commerce -->
+        <article class="project-card" data-category="commerce">
+          <div>
+            <div class="card-meta">
+              <span class="card-badge" data-i18n="badge_commerce">WEB COMMERCE</span>
+              <span class="status-live" data-i18n="status_live">● LIVE</span>
+            </div>
+            <h3 class="card-title"><bdi dir="ltr">Boutique E-Commerce</bdi></h3>
+            <p class="card-desc" data-i18n="desc_boutique">High-conversion web commerce platform with automated Google Apps Script Webhook pipeline integration and dynamic cart state.</p>
+            <div class="card-highlights">
+              <span class="highlight-tag" data-i18n="hl_latency">Zero-Latency Dispatch</span>
+              <span class="highlight-tag" data-i18n="hl_ledger">Instant Ledger Sync</span>
+            </div>
+            <div class="tech-tags">
+              <span data-i18n="tag_commerce">Web Commerce</span>
+              <span data-i18n="tag_webhooks">Webhook Pipelines</span>
+              <span data-i18n="tag_serverless">Serverless Flow</span>
+              <span data-i18n="tag_apps_script">Apps Script</span>
+            </div>
+          </div>
+          <div class="card-actions">
+            <button type="button" class="btn btn-secondary btn-case-study" data-project="boutique" data-i18n="btn_case_study" aria-haspopup="dialog">View Case Study</button>
+            <a href="https://boutique1-phi.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-card" data-i18n="btn_launch">Launch Live ↗</a>
+          </div>
+        </article>
+
+        <!-- Maison Dorée -->
+        <article class="project-card" data-category="3d">
+          <div>
+            <div class="card-meta">
+              <span class="card-badge" data-i18n="badge_3d">3D WEBGL EXPERIENCE</span>
+              <span class="status-live" data-i18n="status_live">● LIVE</span>
+            </div>
+            <h3 class="card-title"><bdi dir="ltr">Maison Dorée</bdi></h3>
+            <p class="card-desc" data-i18n="desc_maison">Luxury French haute pâtisserie digital experience featuring real-time procedural 3D pastry showcases and kinetic typography.</p>
+            <div class="card-highlights">
+              <span class="highlight-tag" data-i18n="hl_fps">60 FPS WebGL</span>
+              <span class="highlight-tag" data-i18n="hl_inspect">Interactive 360° View</span>
+            </div>
+            <div class="tech-tags">
+              <span data-i18n="tag_three_3d">Three.js 3D</span>
+              <span data-i18n="tag_webgl_shaders">WebGL Shaders</span>
+              <span data-i18n="tag_gsap_scroll">GSAP ScrollTrigger</span>
+              <span data-i18n="tag_luxury_ux">Luxury UX</span>
+            </div>
+          </div>
+          <div class="card-actions">
+            <button type="button" class="btn btn-secondary btn-case-study" data-project="maison" data-i18n="btn_case_study" aria-haspopup="dialog">View Case Study</button>
+            <a href="https://maison-doree-three.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-card" data-i18n="btn_launch">Launch Live ↗</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Engineering Stack Section -->
+    <section class="section" id="stack" aria-labelledby="stackTitle">
+      <div class="section-header">
+        <div class="section-eyebrow" data-i18n="stack_eyebrow">// 04. SPECS &amp; CAPABILITIES</div>
+        <h2 class="section-title" id="stackTitle" data-i18n="stack_title">Engineering Stack &amp; Skill Matrix</h2>
+        <p class="section-subtitle" data-i18n="stack_subtitle">Comprehensive breakdown of core competencies, graphics acceleration frameworks, and system scripting.</p>
+      </div>
+
+      <!-- Swipeable Domain Filter Tabs -->
+      <div class="filter-pills-container" id="stackFilters" role="group" aria-label="Filter skills by domain" data-aria-i18n="aria_stack_filters">
+        <button type="button" class="stack-filter-btn active" data-domain="all" data-i18n="stack_all" aria-pressed="true">All Stack Domains</button>
+        <button type="button" class="stack-filter-btn" data-domain="frontend" data-i18n="stack_frontend" aria-pressed="false">Frontend &amp; Core</button>
+        <button type="button" class="stack-filter-btn" data-domain="creative" data-i18n="stack_creative" aria-pressed="false">Creative &amp; Graphics</button>
+        <button type="button" class="stack-filter-btn" data-domain="systems" data-i18n="stack_systems" aria-pressed="false">Systems &amp; Automation</button>
+      </div>
+
+      <!-- 8 Production Cards Grid -->
+      <div class="stack-grid" id="stackGrid">
+        <div class="tech-card" data-domain="frontend">
+          <div class="tech-card-header">
+            <h3 class="tech-card-title" data-i18n="tech_js_title">Modern JavaScript (ES6+)</h3>
+            <span class="tech-badge" data-i18n="tech_js_badge">CORE RUNTIME</span>
+          </div>
+          <p class="tech-desc" data-i18n="tech_js_desc">Asynchronous Event Loop, DOM Performance Profiling, Zero-Dependency State Engines, ES Modules.</p>
+          <div class="tech-tags">
+            <span data-i18n="tech_js_tag1">Async/Await</span><span data-i18n="tech_js_tag2">DOM API</span><span data-i18n="tech_js_tag3">Fetch/REST</span><span data-i18n="tech_js_tag4">Modular ES6</span>
+          </div>
+          <div class="tech-proof" data-i18n="tech_js_proof">● Verified on Cabin Vita &amp; Boutique</div>
+        </div>
+
+        <div class="tech-card" data-domain="frontend">
+          <div class="tech-card-header">
+            <h3 class="tech-card-title" data-i18n="tech_css_title">Responsive CSS3 &amp; Layouts</h3>
+            <span class="tech-badge" data-i18n="tech_css_badge">PRODUCTION STANDARD</span>
+          </div>
+          <p class="tech-desc" data-i18n="tech_css_desc">Dynamic clamp() typography, CSS Grid &amp; Flexbox architecture, Sub-pixel rendering, Cross-device resilience.</p>
+          <div class="tech-tags">
+            <span data-i18n="tech_css_tag1">CSS Grid</span><span data-i18n="tech_css_tag2">clamp()</span><span data-i18n="tech_css_tag3">Custom Properties</span><span data-i18n="tech_css_tag4">Container Queries</span>
+          </div>
+          <div class="tech-proof" data-i18n="tech_css_proof">● 100% Mobile &amp; Desktop Sync across all platforms</div>
+        </div>
+
+        <div class="tech-card" data-domain="creative">
+          <div class="tech-card-header">
+            <h3 class="tech-card-title" data-i18n="tech_3d_title">Three.js &amp; Procedural WebGL</h3>
+            <span class="tech-badge" data-i18n="tech_3d_badge">CREATIVE COMPUTING</span>
+          </div>
+          <p class="tech-desc" data-i18n="tech_3d_desc">Procedural geometry generation, custom PBR materials, performance render loops, camera culling.</p>
+          <div class="tech-tags">
+            <span data-i18n="tech_3d_tag1">WebGL</span><span data-i18n="tech_3d_tag2">PBR Shaders</span><span data-i18n="tech_3d_tag3">Interactive Cameras</span><span data-i18n="tech_3d_tag4">60 FPS Loop</span>
+          </div>
+          <div class="tech-proof" data-i18n="tech_3d_proof">● Maison Dorée 3D Haute Pâtisserie Engine</div>
+        </div>
+
+        <div class="tech-card" data-domain="creative">
+          <div class="tech-card-header">
+            <h3 class="tech-card-title" data-i18n="tech_gsap_title">GSAP Motion &amp; Kinetic UI</h3>
+            <span class="tech-badge" data-i18n="tech_gsap_badge">INTERACTION ENGINE</span>
+          </div>
+          <p class="tech-desc" data-i18n="tech_gsap_desc">Timeline choreography, Lenis inertial integration, magnetic micro-interactions, layout morphing.</p>
+          <div class="tech-tags">
+            <span data-i18n="tech_gsap_tag1">ScrollTrigger</span><span data-i18n="tech_gsap_tag2">Timelines</span><span data-i18n="tech_gsap_tag3">Inertial Scroll</span><span data-i18n="tech_gsap_tag4">Physics Easing</span>
+          </div>
+          <div class="tech-proof" data-i18n="tech_gsap_proof">● Portfolio Navigation &amp; Platform Card Reveals</div>
+        </div>
+
+        <div class="tech-card" data-domain="frontend">
+          <div class="tech-card-header">
+            <h3 class="tech-card-title" data-i18n="tech_react_title">React &amp; Next.js Architecture</h3>
+            <span class="tech-badge" data-i18n="tech_react_badge">APPLICATION FRAMEWORKS</span>
+          </div>
+          <p class="tech-desc" data-i18n="tech_react_desc">Component-driven architecture, state lifecycle management, client hydration, dynamic route optimization.</p>
+          <div class="tech-tags">
+            <span data-i18n="tech_react_tag1">Hooks</span><span data-i18n="tech_react_tag2">Component Lifecycle</span><span data-i18n="tech_react_tag3">State Management</span><span data-i18n="tech_react_tag4">App Router</span>
+          </div>
+          <div class="tech-proof" data-i18n="tech_react_proof">● Scalable Web Architecture Specs</div>
+        </div>
+
+        <div class="tech-card" data-domain="systems">
+          <div class="tech-card-header">
+            <h3 class="tech-card-title" data-i18n="tech_webhooks_title">Webhooks &amp; API Pipelines</h3>
+            <span class="tech-badge" data-i18n="tech_webhooks_badge">WORKFLOW AUTOMATION</span>
+          </div>
+          <p class="tech-desc" data-i18n="tech_webhooks_desc">Headless form routing, Google Apps Script Webhooks, serverless payload dispatch, zero-latency integrations.</p>
+          <div class="tech-tags">
+            <span data-i18n="tech_webhooks_tag1">Apps Script</span><span data-i18n="tech_webhooks_tag2">Webhook Payloads</span><span data-i18n="tech_webhooks_tag3">JSON Schemas</span><span data-i18n="tech_webhooks_tag4">REST API</span>
+          </div>
+          <div class="tech-proof" data-i18n="tech_webhooks_proof">● Boutique E-Commerce Live Ordering Engine</div>
+        </div>
+
+        <div class="tech-card" data-domain="systems">
+          <div class="tech-card-header">
+            <h3 class="tech-card-title" data-i18n="tech_python_title">Python Automation &amp; Scripting</h3>
+            <span class="tech-badge" data-i18n="tech_python_badge">SYSTEM UTILITIES</span>
+          </div>
+          <p class="tech-desc" data-i18n="tech_python_desc">Automated development workflows, data conversion pipelines, structural asset processing.</p>
+          <div class="tech-tags">
+            <span data-i18n="tech_python_tag1">Automation</span><span data-i18n="tech_python_tag2">Data Processing</span><span data-i18n="tech_python_tag3">File I/O</span><span data-i18n="tech_python_tag4">Dev Scripts</span>
+          </div>
+          <div class="tech-proof" data-i18n="tech_python_proof">● Development Automation &amp; Asset Pipelines</div>
+        </div>
+
+        <div class="tech-card" data-domain="systems">
+          <div class="tech-card-header">
+            <h3 class="tech-card-title" data-i18n="tech_cpp_title">C++ Systems &amp; Performance</h3>
+            <span class="tech-badge" data-i18n="tech_cpp_badge">SYSTEM ARCHITECTURE</span>
+          </div>
+          <p class="tech-desc" data-i18n="tech_cpp_desc">Memory architecture principles, computational optimization, deterministic runtime design.</p>
+          <div class="tech-tags">
+            <span data-i18n="tech_cpp_tag1">Data Structures</span><span data-i18n="tech_cpp_tag2">Memory Concepts</span><span data-i18n="tech_cpp_tag3">Algorithmic Speed</span><span data-i18n="tech_cpp_tag4">Optimization</span>
+          </div>
+          <div class="tech-proof" data-i18n="tech_cpp_proof">● Algorithmic Performance Foundations</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Connect & Collaboration Hub -->
+    <section class="section" id="connect" aria-labelledby="connectTitle">
+      <div class="section-header">
+        <div class="section-eyebrow" data-i18n="connect_eyebrow">// 05. COLLABORATION</div>
+        <h2 class="section-title" id="connectTitle" data-i18n="connect_title">Start a Project</h2>
+        <p class="section-subtitle" data-i18n="connect_subtitle">Tell me about your project. I respond within 2 hours.</p>
+      </div>
+
+      <div class="connect-hub">
+        <div class="connect-left">
+          <div class="availability-badge">
+            <span class="pulse-green" aria-hidden="true"></span>
+            <span data-i18n="connect_avail">Available for new projects · 2026</span>
+          </div>
+          <p class="latency-text" data-i18n="connect_sla">GMT+3 · Response within 2 hours</p>
+          
+          <div class="direct-contact-box">
+            <label data-i18n="label_direct_email">Direct Email:</label>
+            <a href="mailto:your-email@example.com" class="email-mailto-link" aria-label="Send email to contact" data-aria-i18n="aria_mailto_link">
+              <bdi dir="ltr">your-email@example.com</bdi>
+            </a>
+            <button type="button" class="btn-copy-email" id="copyEmailBtn" aria-label="Copy email address" data-aria-i18n="aria_copy_email_btn">
+              <bdi dir="ltr" class="email-display">your-email@example.com</bdi>
+              <span class="copy-badge" id="copyBadge" aria-live="polite" data-i18n="copy_label">Copy</span>
+            </button>
+          </div>
+
+          <a href="https://x.com/your_handle" target="_blank" rel="noopener noreferrer" class="btn btn-x" aria-label="Follow on X" data-aria-i18n="aria_follow_x" data-i18n="btn_follow_x">
+            Follow @your_handle on X ↗
+          </a>
+        </div>
+
+        <form class="connect-form" id="connectForm" novalidate aria-label="Project inquiry form" data-aria-i18n="aria_connect_form">
+            <!-- Web3Forms access_key placeholder — Replace with your Web3Forms Access Key from https://web3forms.com -->
+            <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+            <input type="hidden" name="_subject" value="New Project Inquiry">
+
+            <!-- Web3Forms honeypot: checkbox must stay unchecked. Bots check it. -->
+            <input type="checkbox" name="botcheck" id="botcheck"
+                   style="display:none" aria-hidden="true" tabindex="-1">
+
+            <div class="form-group">
+              <label for="fieldScope" data-i18n="label_scope">Project Scope:</label>
+              <div class="scope-tags" role="group" aria-label="Project scope options" data-aria-i18n="aria_scope_group" id="fieldScope">
+                <label class="scope-tag"><input type="checkbox" name="scope" value="responsive"> <span data-i18n="scope_responsive">Responsive Platform</span></label>
+                <label class="scope-tag"><input type="checkbox" name="scope" value="prototype"> <span data-i18n="scope_prototype">Rapid Prototype</span></label>
+                <label class="scope-tag"><input type="checkbox" name="scope" value="3d"> <span data-i18n="scope_3d">3D WebGL</span></label>
+                <label class="scope-tag"><input type="checkbox" name="scope" value="automation"> <span data-i18n="scope_automation">Automation</span></label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="fieldName" data-i18n="label_name">Your Name</label>
+              <input type="text" id="fieldName" name="name" placeholder="Your full name" required autocomplete="name" maxlength="100" aria-required="true" data-placeholder-i18n="placeholder_name">
+              <span class="field-error" id="fieldNameError" role="alert" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="fieldEmail" data-i18n="label_email">Your Email</label>
+              <input type="email" id="fieldEmail" name="email" placeholder="your@email.com" required autocomplete="email" maxlength="254" aria-required="true" data-placeholder-i18n="placeholder_email" dir="ltr">
+              <span class="field-error" id="fieldEmailError" role="alert" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="fieldMessage" data-i18n="label_message">Project Summary</label>
+              <textarea id="fieldMessage" name="message" rows="4" placeholder="Describe your project, goals, and timeline…" required maxlength="2000" aria-required="true" data-placeholder-i18n="placeholder_message"></textarea>
+              <span class="field-error" id="fieldMessageError" role="alert" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group form-privacy">
+              <label class="scope-tag">
+                <input type="checkbox" id="privacyCheck" name="consent" required aria-required="true">
+                <span data-i18n="label_privacy">I agree that my submitted data will be used to respond to my inquiry.</span>
+              </label>
+              <span class="field-error" id="privacyError" role="alert" aria-live="polite"></span>
+            </div>
+
+            <!-- Form status (loading / success / error) -->
+            <div id="formStatus" class="form-status" aria-live="polite" aria-atomic="true" hidden></div>
+
+            <button type="submit" class="btn btn-primary btn-full" id="formSubmitBtn">
+              <span class="btn-label" data-i18n="btn_send_request">Send Request →</span>
+              <span class="btn-spinner" aria-hidden="true" hidden></span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div><span data-i18n="footer_text">VIBE.STUDIO // VIBE.CODE &copy; 2026. All rights reserved.</span> &bull; <a href="privacy.html" style="color: #94A3B8; text-decoration: underline;" data-i18n="footer_privacy">Privacy Policy</a></div>
+  </footer>
+
+  <!-- Case Study Drawer / Modal -->
+  <div class="cs-backdrop" id="csBackdrop" aria-hidden="true"></div>
+  <aside class="cs-drawer" id="csDrawer" role="dialog" aria-modal="true" aria-labelledby="csDrawerTitle" aria-hidden="true" aria-label="Case study details modal" data-aria-i18n="aria_cs_drawer">
+    <div class="cs-drawer-header">
+      <button type="button" class="cs-close" id="csClose" aria-label="Close case study" data-aria-i18n="aria_cs_close">&times;</button>
+    </div>
+    <div class="cs-drawer-body" id="csDrawerBody">
+      <!-- Populated by JS -->
+    </div>
+  </aside>
+
+  <!-- DevTools Deterrent Overlay (Visual deterrent only, safe & non-blocking) -->
+  <div class="devtools-backdrop" id="devtoolsBackdrop" aria-hidden="true"></div>
+  <div class="devtools-modal" id="devtoolsModal" role="dialog" aria-modal="true" aria-labelledby="devtoolsTitle" aria-describedby="devtoolsDesc" aria-hidden="true" aria-label="Developer tools notice modal" data-aria-i18n="aria_devtools_modal">
+    <div class="devtools-header">
+      <div class="hero-badge" style="margin:0;">
+        <span class="badge-dot" aria-hidden="true"></span>
+        <span data-i18n="devtools_badge">// NOTICE</span>
+      </div>
+      <button type="button" class="cs-close" id="devtoolsClose" aria-label="Close notification" data-aria-i18n="aria_devtools_close">&times;</button>
+    </div>
+    <div class="devtools-body">
+      <h3 class="devtools-title" id="devtoolsTitle" data-i18n="devtools_title">Developer tools detected.</h3>
+      <p class="devtools-desc" id="devtoolsDesc" data-i18n="devtools_desc">
+        Please respect the website and do not attempt to access private functionality. The interface may be unavailable while developer tools are open.
+      </p>
+    </div>
+    <div class="devtools-footer">
+      <button type="button" class="btn btn-primary btn-full" id="devtoolsOkBtn" data-i18n="devtools_btn">Acknowledge &amp; Continue →</button>
+    </div>
+  </div>
+
+  <!-- Mobile floating CTA (shown on scroll past hero) -->
+  <div class="mobile-cta-bar" id="mobileCTABar" aria-hidden="true">
+    <a href="#connect" class="btn btn-primary btn-full" data-i18n="btn_start_project" tabindex="-1">Start a Project</a>
+  </div>
+
+  <script src="app.js?v=15.0" defer></script>
+</body>
+</html>

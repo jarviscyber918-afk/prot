@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title data-i18n="404_title">404 — Page Not Found // VIBE.STUDIO</title>
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#0F172A">
+
+  <!-- Favicon System -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=1.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png?v=1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=1.0">
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=15.0">
+</head>
+<body style="display: flex; flex-direction: column; min-height: 100dvh; justify-content: space-between;">
+
+  <!-- Simple Header -->
+  <header class="header" role="banner">
+    <a href="/" class="brand" aria-label="VIBE.STUDIO — Home" data-aria-i18n="aria_brand">
+      <span class="brand-dot" aria-hidden="true"></span>
+      <span class="brand-name">VIBE.STUDIO</span>
+      <span class="brand-sub" aria-hidden="true">// VIBE.CODE</span>
+    </a>
+    <a href="/" class="btn btn-outline" data-i18n="404_back_link">← Back to Portfolio</a>
+  </header>
+
+  <!-- 404 Hero Section -->
+  <main id="main-content" style="flex: 1; display: flex; align-items: center; justify-content: center; padding-block: var(--space-2xl);">
+    <div style="text-align: center; max-width: 600px; padding-inline: var(--section-px);">
+      <div class="hero-badge" style="margin-inline: auto; margin-bottom: 1rem;">
+        <span class="badge-dot" aria-hidden="true"></span>
+        <span data-i18n="404_badge">ERROR 404 // ROUTE_NOT_FOUND</span>
+      </div>
+      <h1 class="hero-title" style="margin-inline: auto; font-size: clamp(2.5rem, 8vw, 5rem); margin-bottom: 1rem;">
+        <span class="gradient-text">404</span>
+      </h1>
+      <h2 style="font-size: clamp(1.2rem, 3vw, 1.8rem); font-weight: 700; margin-bottom: 1rem; color: var(--text);" data-i18n="404_h2">
+        Page Not Found
+      </h2>
+      <p style="color: var(--text-body); margin-bottom: 2rem; line-height: 1.7;" data-i18n="404_p">
+        The requested URL was not found on this server. Return home to view featured web platforms, services, and engineering capabilities.
+      </p>
+      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+        <a href="/" class="btn btn-primary" data-i18n="404_home_btn">Back to Home Page →</a>
+        <a href="/#connect" class="btn btn-secondary" data-i18n="404_support_btn">Contact Support</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div data-i18n="footer_text">VIBE.STUDIO // VIBE.CODE &copy; 2026. All rights reserved.</div>
+  </footer>
+
+  <script>
+    (function() {
+      var dict = {
+        en: {
+          404_title: "404 — Page Not Found // VIBE.STUDIO",
+          404_back_link: "← Back to Portfolio",
+          404_badge: "ERROR 404 // ROUTE_NOT_FOUND",
+          404_h2: "Page Not Found",
+          404_p: "The requested URL was not found on this server. Return home to view featured web platforms, services, and engineering capabilities.",
+          404_home_btn: "Back to Home Page →",
+          404_support_btn: "Contact Support",
+          footer_text: "VIBE.STUDIO // VIBE.CODE © 2026. All rights reserved.",
+          aria_brand: "VIBE.STUDIO — Home"
+        },
+        ar: {
+          404_title: "404 — الصفحة غير موجودة // VIBE.STUDIO",
+          404_back_link: "← العودة إلى المعرض",
+          404_badge: "خطأ 404 // الصفحة غير موجودة",
+          404_h2: "الصفحة غير موجودة",
+          404_p: "لم يتم العثور على الرابط المطلوب على هذا الخادم. عد إلى الصفحة الرئيسية للاطلاع على المنصات والخدمات والقدرات الهندسية.",
+          404_home_btn: "العودة للصفحة الرئيسية ←",
+          404_support_btn: "تواصل مع الدعم",
+          footer_text: "VIBE.STUDIO // VIBE.CODE © 2026. جميع الحقوق محفوظة.",
+          aria_brand: "VIBE.STUDIO — الرئيسية"
+        }
+      };
+      var lang = 'en';
+      try {
+        var stored = localStorage.getItem('jc_lang');
+        if (stored && dict[stored]) lang = stored;
+      } catch(e){}
+      document.documentElement.setAttribute('lang', lang);
+      document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+      var d = dict[lang];
+      document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        var k = el.getAttribute('data-i18n');
+        if (d[k]) el.textContent = d[k];
+      });
+      document.querySelectorAll('[data-aria-i18n]').forEach(function(el) {
+        var k = el.getAttribute('data-aria-i18n');
+        if (d[k]) el.setAttribute('aria-label', d[k]);
+      });
+      if (d['404_title']) document.title = d['404_title'];
+    })();
+  </script>
+</body>
+</html>

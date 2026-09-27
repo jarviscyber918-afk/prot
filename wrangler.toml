@@ -1,0 +1,24 @@
+name = "vibe-studio-security-edge"
+main = "worker.js"
+compatibility_date = "2026-09-26"
+account_id = ""
+
+[vars]
+ENVIRONMENT = "production"
+ADMIN_LOG_KEY = "SECRET_ADMIN_BEARER_TOKEN"
+OWNER_PUBLIC_IP = "YOUR_ADMIN_IP_ADDRESS"
+MAX_REQUESTS_PER_MINUTE = "5"
+BURST_THRESHOLD = "10"
+LOG_RETENTION_DAYS = "14"
+
+# Key-Value Stores for Rate Limiting and Security Audit Logging
+[[kv_namespaces]]
+binding = "IP_LIMITS"
+id = "ip_limits_kv_id"
+
+[[kv_namespaces]]
+binding = "SECURITY_LOGS"
+id = "security_logs_kv_id"
+
+[site]
+bucket = "./"

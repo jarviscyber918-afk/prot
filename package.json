@@ -1,0 +1,22 @@
+{
+  "name": "vibe-studio-template",
+  "version": "1.0.0",
+  "description": "VIBE.STUDIO — Premium Bilingual 3D WebGL Portfolio & Platform Template",
+  "main": "app.js",
+  "scripts": {
+    "dev": "node serve-lan.js",
+    "dev:lan": "node serve-lan.js",
+    "serve": "node serve-lan.js"
+  },
+  "keywords": [
+    "portfolio-template",
+    "bilingual-website",
+    "arabic-rtl",
+    "threejs",
+    "webgl",
+    "gsap",
+    "responsive-design"
+  ],
+  "author": "VIBE.STUDIO",
+  "license": "Commercial-Single-Use"
+}
